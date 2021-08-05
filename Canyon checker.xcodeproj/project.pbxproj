@@ -3,27 +3,53 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E1A504D26B9C1A200026C52 /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A504C26B9C1A200026C52 /* Bike.swift */; };
+		0E1A505226B9E2DE00026C52 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505126B9E2DE00026C52 /* UIColor+Utils.swift */; };
+		0E1A505426B9F12B00026C52 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505326B9F12B00026C52 /* UIImage+Utils.swift */; };
+		0E1A505B26BAF4CA00026C52 /* BikeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505A26BAF4CA00026C52 /* BikeSelector.swift */; };
+		0E1A505D26BB069400026C52 /* BikeAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505C26BB069400026C52 /* BikeAdder.swift */; };
+		0E1A506226BC62C200026C52 /* Regex+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A506126BC62C200026C52 /* Regex+Utils.swift */; };
 		0EF7A0EA26B73F3B00D26AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A0E926B73F3B00D26AAB /* AppDelegate.swift */; };
 		0EF7A0EC26B73F3B00D26AAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A0EB26B73F3B00D26AAB /* SceneDelegate.swift */; };
-		0EF7A0EE26B73F3B00D26AAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A0ED26B73F3B00D26AAB /* ViewController.swift */; };
 		0EF7A0F126B73F3B00D26AAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7A0EF26B73F3B00D26AAB /* Main.storyboard */; };
 		0EF7A0F326B73F3E00D26AAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7A0F226B73F3E00D26AAB /* Assets.xcassets */; };
 		0EF7A0F626B73F3E00D26AAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7A0F426B73F3E00D26AAB /* LaunchScreen.storyboard */; };
+		0EF7A0FE26B7438700D26AAB /* CanyonCheckerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A0FD26B7438700D26AAB /* CanyonCheckerTableViewController.swift */; };
+		0EF7A10026B7472500D26AAB /* BikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A0FF26B7472500D26AAB /* BikeCell.swift */; };
+		0EF7A10226B7490100D26AAB /* StackView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A10126B7490100D26AAB /* StackView+Utils.swift */; };
+		0EF7A10426B74A7D00D26AAB /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A10326B74A7D00D26AAB /* StatusView.swift */; };
+		0EF7A10626B74AAF00D26AAB /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7A10526B74AAF00D26AAB /* StatusView.xib */; };
+		0EF7A10826B74DAD00D26AAB /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A10726B74DAD00D26AAB /* Utils.swift */; };
+		0EF7A10A26B74E0200D26AAB /* BikeChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A10926B74E0200D26AAB /* BikeChecker.swift */; };
+		0EF7A10D26B7524B00D26AAB /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF7A10C26B7524B00D26AAB /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0EF7A0E626B73F3B00D26AAB /* Canyon checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Canyon checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E1A504C26B9C1A200026C52 /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
+		0E1A505126B9E2DE00026C52 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		0E1A505326B9F12B00026C52 /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
+		0E1A505626BA926200026C52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0E1A505A26BAF4CA00026C52 /* BikeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeSelector.swift; sourceTree = "<group>"; };
+		0E1A505C26BB069400026C52 /* BikeAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeAdder.swift; sourceTree = "<group>"; };
+		0E1A506126BC62C200026C52 /* Regex+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Regex+Utils.swift"; sourceTree = "<group>"; };
+		0EF7A0E626B73F3B00D26AAB /* Canyon Alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Canyon Alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF7A0E926B73F3B00D26AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EF7A0EB26B73F3B00D26AAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0EF7A0ED26B73F3B00D26AAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0EF7A0F026B73F3B00D26AAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EF7A0F226B73F3E00D26AAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EF7A0F526B73F3E00D26AAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EF7A0F726B73F3E00D26AAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EF7A0FD26B7438700D26AAB /* CanyonCheckerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanyonCheckerTableViewController.swift; sourceTree = "<group>"; };
+		0EF7A0FF26B7472500D26AAB /* BikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCell.swift; sourceTree = "<group>"; };
+		0EF7A10126B7490100D26AAB /* StackView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView+Utils.swift"; sourceTree = "<group>"; };
+		0EF7A10326B74A7D00D26AAB /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		0EF7A10526B74AAF00D26AAB /* StatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusView.xib; sourceTree = "<group>"; };
+		0EF7A10726B74DAD00D26AAB /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0EF7A10926B74E0200D26AAB /* BikeChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,12 +57,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF7A10D26B7524B00D26AAB /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E1A505026B9E2C600026C52 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0EF7A10126B7490100D26AAB /* StackView+Utils.swift */,
+				0E1A505126B9E2DE00026C52 /* UIColor+Utils.swift */,
+				0E1A505326B9F12B00026C52 /* UIImage+Utils.swift */,
+				0E1A506126BC62C200026C52 /* Regex+Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0E1A505726BAF40800026C52 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0EF7A0F426B73F3E00D26AAB /* LaunchScreen.storyboard */,
+				0EF7A0EF26B73F3B00D26AAB /* Main.storyboard */,
+				0EF7A10326B74A7D00D26AAB /* StatusView.swift */,
+				0EF7A10526B74AAF00D26AAB /* StatusView.xib */,
+				0EF7A0FD26B7438700D26AAB /* CanyonCheckerTableViewController.swift */,
+				0EF7A0FF26B7472500D26AAB /* BikeCell.swift */,
+				0E1A505A26BAF4CA00026C52 /* BikeSelector.swift */,
+				0E1A505C26BB069400026C52 /* BikeAdder.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0E1A505826BAF43500026C52 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0E1A504C26B9C1A200026C52 /* Bike.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0E1A505926BAF44900026C52 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0EF7A10926B74E0200D26AAB /* BikeChecker.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		0EF7A0DD26B73F3B00D26AAB = {
 			isa = PBXGroup;
 			children = (
@@ -48,7 +117,7 @@
 		0EF7A0E726B73F3B00D26AAB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0EF7A0E626B73F3B00D26AAB /* Canyon checker.app */,
+				0EF7A0E626B73F3B00D26AAB /* Canyon Alert.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -56,12 +125,14 @@
 		0EF7A0E826B73F3B00D26AAB /* Canyon checker */ = {
 			isa = PBXGroup;
 			children = (
-				0EF7A0E926B73F3B00D26AAB /* AppDelegate.swift */,
+				0E1A505926BAF44900026C52 /* Controller */,
+				0E1A505826BAF43500026C52 /* Data */,
+				0E1A505026B9E2C600026C52 /* Utils */,
 				0EF7A0EB26B73F3B00D26AAB /* SceneDelegate.swift */,
-				0EF7A0ED26B73F3B00D26AAB /* ViewController.swift */,
-				0EF7A0EF26B73F3B00D26AAB /* Main.storyboard */,
+				0EF7A0E926B73F3B00D26AAB /* AppDelegate.swift */,
+				0EF7A10726B74DAD00D26AAB /* Utils.swift */,
+				0E1A505726BAF40800026C52 /* UI */,
 				0EF7A0F226B73F3E00D26AAB /* Assets.xcassets */,
-				0EF7A0F426B73F3E00D26AAB /* LaunchScreen.storyboard */,
 				0EF7A0F726B73F3E00D26AAB /* Info.plist */,
 			);
 			path = "Canyon checker";
@@ -70,9 +141,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0EF7A0E526B73F3B00D26AAB /* Canyon checker */ = {
+		0EF7A0E526B73F3B00D26AAB /* Canyon Alert */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0EF7A0FA26B73F3E00D26AAB /* Build configuration list for PBXNativeTarget "Canyon checker" */;
+			buildConfigurationList = 0EF7A0FA26B73F3E00D26AAB /* Build configuration list for PBXNativeTarget "Canyon Alert" */;
 			buildPhases = (
 				0EF7A0E226B73F3B00D26AAB /* Sources */,
 				0EF7A0E326B73F3B00D26AAB /* Frameworks */,
@@ -82,9 +153,12 @@
 			);
 			dependencies = (
 			);
-			name = "Canyon checker";
+			name = "Canyon Alert";
+			packageProductDependencies = (
+				0EF7A10C26B7524B00D26AAB /* SwiftSoup */,
+			);
 			productName = "Canyon checker";
-			productReference = 0EF7A0E626B73F3B00D26AAB /* Canyon checker.app */;
+			productReference = 0EF7A0E626B73F3B00D26AAB /* Canyon Alert.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -110,11 +184,14 @@
 				Base,
 			);
 			mainGroup = 0EF7A0DD26B73F3B00D26AAB;
+			packageReferences = (
+				0EF7A10B26B7524B00D26AAB /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 0EF7A0E726B73F3B00D26AAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0EF7A0E526B73F3B00D26AAB /* Canyon checker */,
+				0EF7A0E526B73F3B00D26AAB /* Canyon Alert */,
 			);
 		};
 /* End PBXProject section */
@@ -124,6 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF7A10626B74AAF00D26AAB /* StatusView.xib in Resources */,
 				0EF7A0F626B73F3E00D26AAB /* LaunchScreen.storyboard in Resources */,
 				0EF7A0F326B73F3E00D26AAB /* Assets.xcassets in Resources */,
 				0EF7A0F126B73F3B00D26AAB /* Main.storyboard in Resources */,
@@ -137,7 +215,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EF7A0EE26B73F3B00D26AAB /* ViewController.swift in Sources */,
+				0E1A505426B9F12B00026C52 /* UIImage+Utils.swift in Sources */,
+				0E1A505B26BAF4CA00026C52 /* BikeSelector.swift in Sources */,
+				0EF7A10226B7490100D26AAB /* StackView+Utils.swift in Sources */,
+				0EF7A10026B7472500D26AAB /* BikeCell.swift in Sources */,
+				0E1A505D26BB069400026C52 /* BikeAdder.swift in Sources */,
+				0EF7A10426B74A7D00D26AAB /* StatusView.swift in Sources */,
+				0EF7A0FE26B7438700D26AAB /* CanyonCheckerTableViewController.swift in Sources */,
+				0EF7A10A26B74E0200D26AAB /* BikeChecker.swift in Sources */,
+				0E1A505226B9E2DE00026C52 /* UIColor+Utils.swift in Sources */,
+				0E1A504D26B9C1A200026C52 /* Bike.swift in Sources */,
+				0EF7A10826B74DAD00D26AAB /* Utils.swift in Sources */,
+				0E1A506226BC62C200026C52 /* Regex+Utils.swift in Sources */,
 				0EF7A0EA26B73F3B00D26AAB /* AppDelegate.swift in Sources */,
 				0EF7A0EC26B73F3B00D26AAB /* SceneDelegate.swift in Sources */,
 			);
@@ -158,6 +247,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0EF7A0F526B73F3E00D26AAB /* Base */,
+				0E1A505626BA926200026C52 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -286,6 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TXP9CQ54XP;
 				INFOPLIST_FILE = "Canyon checker/Info.plist";
@@ -296,7 +387,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.a7-software.Canyon-checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +396,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TXP9CQ54XP;
 				INFOPLIST_FILE = "Canyon checker/Info.plist";
@@ -315,7 +407,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.a7-software.Canyon-checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -331,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0EF7A0FA26B73F3E00D26AAB /* Build configuration list for PBXNativeTarget "Canyon checker" */ = {
+		0EF7A0FA26B73F3E00D26AAB /* Build configuration list for PBXNativeTarget "Canyon Alert" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0EF7A0FB26B73F3E00D26AAB /* Debug */,
@@ -341,6 +433,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0EF7A10B26B7524B00D26AAB /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0EF7A10C26B7524B00D26AAB /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EF7A10B26B7524B00D26AAB /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0EF7A0DE26B73F3B00D26AAB /* Project object */;
 }
