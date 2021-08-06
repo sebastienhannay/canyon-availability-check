@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		0E1A504D26B9C1A200026C52 /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A504C26B9C1A200026C52 /* Bike.swift */; };
 		0E1A505226B9E2DE00026C52 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505126B9E2DE00026C52 /* UIColor+Utils.swift */; };
-		0E1A505426B9F12B00026C52 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505326B9F12B00026C52 /* UIImage+Utils.swift */; };
 		0E1A505B26BAF4CA00026C52 /* BikeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505A26BAF4CA00026C52 /* BikeSelector.swift */; };
 		0E1A505D26BB069400026C52 /* BikeAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A505C26BB069400026C52 /* BikeAdder.swift */; };
 		0E1A506226BC62C200026C52 /* Regex+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A506126BC62C200026C52 /* Regex+Utils.swift */; };
+		0E1A508826BD865200026C52 /* CanyonBike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A508726BD865200026C52 /* CanyonBike.swift */; };
+		0E1A508A26BD87B100026C52 /* URLSession+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A508926BD87B100026C52 /* URLSession+Utils.swift */; };
+		0E1A508C26BDA49900026C52 /* URLComponents+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A508B26BDA49900026C52 /* URLComponents+Utils.swift */; };
 		0EF7A0EA26B73F3B00D26AAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A0E926B73F3B00D26AAB /* AppDelegate.swift */; };
 		0EF7A0EC26B73F3B00D26AAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7A0EB26B73F3B00D26AAB /* SceneDelegate.swift */; };
 		0EF7A0F126B73F3B00D26AAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EF7A0EF26B73F3B00D26AAB /* Main.storyboard */; };
@@ -31,11 +33,13 @@
 /* Begin PBXFileReference section */
 		0E1A504C26B9C1A200026C52 /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
 		0E1A505126B9E2DE00026C52 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
-		0E1A505326B9F12B00026C52 /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		0E1A505626BA926200026C52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0E1A505A26BAF4CA00026C52 /* BikeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeSelector.swift; sourceTree = "<group>"; };
 		0E1A505C26BB069400026C52 /* BikeAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeAdder.swift; sourceTree = "<group>"; };
 		0E1A506126BC62C200026C52 /* Regex+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Regex+Utils.swift"; sourceTree = "<group>"; };
+		0E1A508726BD865200026C52 /* CanyonBike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanyonBike.swift; sourceTree = "<group>"; };
+		0E1A508926BD87B100026C52 /* URLSession+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Utils.swift"; sourceTree = "<group>"; };
+		0E1A508B26BDA49900026C52 /* URLComponents+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLComponents+Utils.swift"; sourceTree = "<group>"; };
 		0EF7A0E626B73F3B00D26AAB /* Canyon Alert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Canyon Alert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF7A0E926B73F3B00D26AAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EF7A0EB26B73F3B00D26AAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,8 +73,9 @@
 			children = (
 				0EF7A10126B7490100D26AAB /* StackView+Utils.swift */,
 				0E1A505126B9E2DE00026C52 /* UIColor+Utils.swift */,
-				0E1A505326B9F12B00026C52 /* UIImage+Utils.swift */,
 				0E1A506126BC62C200026C52 /* Regex+Utils.swift */,
+				0E1A508926BD87B100026C52 /* URLSession+Utils.swift */,
+				0E1A508B26BDA49900026C52 /* URLComponents+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 		0E1A505826BAF43500026C52 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0E1A506826BD7E5400026C52 /* CanyonBike */,
 				0E1A504C26B9C1A200026C52 /* Bike.swift */,
 			);
 			path = Data;
@@ -104,6 +110,14 @@
 				0EF7A10926B74E0200D26AAB /* BikeChecker.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		0E1A506826BD7E5400026C52 /* CanyonBike */ = {
+			isa = PBXGroup;
+			children = (
+				0E1A508726BD865200026C52 /* CanyonBike.swift */,
+			);
+			path = CanyonBike;
 			sourceTree = "<group>";
 		};
 		0EF7A0DD26B73F3B00D26AAB = {
@@ -215,7 +229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E1A505426B9F12B00026C52 /* UIImage+Utils.swift in Sources */,
 				0E1A505B26BAF4CA00026C52 /* BikeSelector.swift in Sources */,
 				0EF7A10226B7490100D26AAB /* StackView+Utils.swift in Sources */,
 				0EF7A10026B7472500D26AAB /* BikeCell.swift in Sources */,
@@ -225,10 +238,13 @@
 				0EF7A10A26B74E0200D26AAB /* BikeChecker.swift in Sources */,
 				0E1A505226B9E2DE00026C52 /* UIColor+Utils.swift in Sources */,
 				0E1A504D26B9C1A200026C52 /* Bike.swift in Sources */,
+				0E1A508C26BDA49900026C52 /* URLComponents+Utils.swift in Sources */,
+				0E1A508826BD865200026C52 /* CanyonBike.swift in Sources */,
 				0EF7A10826B74DAD00D26AAB /* Utils.swift in Sources */,
 				0E1A506226BC62C200026C52 /* Regex+Utils.swift in Sources */,
 				0EF7A0EA26B73F3B00D26AAB /* AppDelegate.swift in Sources */,
 				0EF7A0EC26B73F3B00D26AAB /* SceneDelegate.swift in Sources */,
+				0E1A508A26BD87B100026C52 /* URLSession+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

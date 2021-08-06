@@ -38,11 +38,15 @@ class CanyonCheckerTableViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return [UITableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Action to remove cell on bike list"), handler: { action, indexPath in
-            let bike = BikeChecker.shared.registeredBikes[indexPath.row]
-            BikeChecker.shared.registeredBikes = BikeChecker.shared.registeredBikes.filter ( { $0.url != bike.url })
-        })]
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Action to remove cell on bike list"), handler: {(action, view, completionHandler) in
+            // Update data source when user taps action
+            BikeChecker.shared.registeredBikes.remove(at: indexPath.row)
+            completionHandler(true)
+          })
+
+          let configuration = UISwipeActionsConfiguration(actions: [action])
+          return configuration
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +57,6 @@ class CanyonCheckerTableViewController: UITableViewController {
         if let _ = bike.url {
             cell.loading = true
             BikeChecker.shared.checkStatus(for: bike) { availability in
-                bike.availabilities = availability
                 DispatchQueue.main.async {
                     cell.loading = false
                     cell.bike = bike

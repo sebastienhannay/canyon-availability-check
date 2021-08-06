@@ -18,59 +18,100 @@ struct BikeAvailability : Codable {
 }
 
 class Bike: Codable {
-    var name : String?
-    var colorName : String?
-    var url : URL?
+    
     var image : UIImage?
-    var colors : [String]?
-    var sizesToCheck : [String]? {
-        didSet {
-            availabilities = availabilities?.filter( { sizesToCheck?.contains($0.size) ?? false })
-        }
-    }
-    var type : String?
-    var availabilities : [BikeAvailability]? {
+    var sizesToCheck = [String]()
+    var selectedColor : String?
+    var canyonBike : CanyonBike? {
         didSet {
             if BikeChecker.shared.registeredBikes.contains(where: { $0.url == self.url }) {
                 BikeChecker.shared.serialize()
             }
         }
     }
-    var otherColor : (colorName : String, colors : [String], url: URL)?
+    
+    var url : URL? {
+        get {
+            if let canyonBike = canyonBike, let url = URL(string: canyonBike.productData.selectedProductUrl) {
+                var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                components?.host = "www.canyon.com"
+                components?.scheme = "https"
+                components?.queryItems = [URLQueryItem(name: "dwvar_\(canyonBike.id)_pv_rahmenfarbe", value: selectedColor)]
+                return components?.url
+            }
+            return nil
+        }
+    }
+    
+    var canyonBikeUrl : URL? {
+        get {
+            if let url = url {
+                var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                var queryItems = urlComponents?.queryItems
+                queryItems?.append(URLQueryItem(name: "pid", value: urlComponents?.fileName))
+                urlComponents?.queryItems = queryItems
+                let queryParams = urlComponents?.percentEncodedQuery ?? ""
+                let locale = Locale(identifier: urlComponents?.pathComponents?.first ?? "de-de")
+                return URL(string: "https://www.canyon.com/on/demandware.store/Sites-RoW-Site/\(locale.languageCode ?? "en")_\(locale.regionCode ?? "US")/Product-Variation?\(queryParams)")!
+            }
+            return nil
+        }
+    }
+    
+    var name : String? {
+        get {
+            canyonBike?.name
+        }
+    }
+    
+    var selectedColorInfo : Value? {
+        get {
+            canyonBike?.productData.variationAttributes.first(where: { $0.id == "pv_rahmenfarbe" })?.values.first(where:  { $0.id == selectedColor })
+        }
+    }
+    
+    var colorName : String? {
+        get {
+            selectedColorInfo?.displayValue
+        }
+    }
+    
+    var colors : [String]? {
+        get {
+            selectedColorInfo?.swatchColors
+        }
+    }
+    
+    var availabilities : [BikeAvailability] {
+        get {
+            canyonBike?.sizes?.compactMap( { BikeAvailability(size: $0.displayValue, available: $0.availability?.available ?? false) } ).filter( { sizesToCheck.contains($0.size) } ) ?? [BikeAvailability]()
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
-        case name
-        case url
         case image
-        case colors
         case sizesToCheck
-        case availabilities
-        case type
-        case colorName
+        case selectedColor
+        case canyonBike
     }
     
     init() {}
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        name = try values.decodeIfPresent(String.self, forKey: .name)
-        url = try values.decodeIfPresent(URL.self, forKey: .url)
+    
         image = try UIImage(data: values.decode(Data.self, forKey: .image))
-        colors = try values.decodeIfPresent([String].self, forKey: .colors)
-        sizesToCheck = try values.decodeIfPresent([String].self, forKey: .sizesToCheck)
-        availabilities = try values.decodeIfPresent([BikeAvailability].self, forKey: .availabilities)
-        type = try values.decodeIfPresent(String.self, forKey: .type)
-        colorName = try values.decodeIfPresent(String.self, forKey: .colorName)
+        sizesToCheck = try values.decodeIfPresent([String].self, forKey: .sizesToCheck) ?? [String]()
+        selectedColor = try values.decodeIfPresent(String.self, forKey: .selectedColor)
+        canyonBike = try values.decodeIfPresent(CanyonBike.self, forKey: .canyonBike)
+        
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(url, forKey: .url)
         try container.encode(image?.pngData(), forKey: .image)
-        try container.encode(colors, forKey: .colors)
         try container.encode(sizesToCheck, forKey: .sizesToCheck)
-        try container.encode(availabilities, forKey: .availabilities)
-        try container.encode(colorName, forKey: .colorName)
+        try container.encode(selectedColor, forKey: .selectedColor)
+        try container.encode(canyonBike, forKey: .canyonBike)
     }
 }

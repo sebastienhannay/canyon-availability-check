@@ -12,7 +12,7 @@ class BikeSelector : UIViewController, WKNavigationDelegate {
     
     private let prefKey = "last_visited_page"
     
-    var bike : Bike? {
+    var bike : CanyonBike? {
         didSet {
             DispatchQueue.main.async {
                 self.bookmarkButton.isEnabled = self.bike != nil
@@ -78,9 +78,9 @@ class BikeSelector : UIViewController, WKNavigationDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let bikeAdder = segue.destination as? BikeAdder  {
             if bike != nil {
-                bikeAdder.bike = bike
+                bikeAdder.canyonBike = bike
             } else if let url = webView.url {
-                BikeChecker.shared.bike(from: url, completion: { bikeAdder.bike = $0})
+                BikeChecker.shared.bike(from: url, completion: { bikeAdder.canyonBike = $0})
             }
         }
     }

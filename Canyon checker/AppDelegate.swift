@@ -25,10 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 BikeChecker.registerBackgroundTask()
             }
             print("Background bike check started")
-            BikeChecker.shared.checkAllAndNotify()
-            print("Background bike check done")
-            task.setTaskCompleted(success: true)
-            BikeChecker.registerBackgroundTask()
+            BikeChecker.shared.checkAllAndNotify() {
+                print("Background bike check done")
+                task.setTaskCompleted(success: true)
+                BikeChecker.registerBackgroundTask()
+            }
         }
         
         notificationCenter.requestAuthorization(options: options) {

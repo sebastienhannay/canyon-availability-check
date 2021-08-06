@@ -7,6 +7,19 @@
 
 import Foundation
 
+func newJSONDecoder() -> JSONDecoder {
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .iso8601
+    return decoder
+}
+
+func newJSONEncoder() -> JSONEncoder {
+    let encoder = JSONEncoder()
+    encoder.dateEncodingStrategy = .iso8601
+    return encoder
+}
+
+
 func memoryUsed() -> UInt64 {
     var info = mach_task_basic_info()
     let MACH_TASK_BASIC_INFO_COUNT = MemoryLayout<mach_task_basic_info>.stride/MemoryLayout<natural_t>.stride
@@ -36,7 +49,7 @@ public func benchmark(name: String = "", _ closure: () -> Void) {
     closure()
     
     let secondsElapsed = Date().timeIntervalSince(beforeTime)
-    let memoryConsumed = Double(memoryUsed() - memoryBefore) / 1024.0 / 1024.0
+    let memoryConsumed = (Double(memoryUsed()) - Double(memoryBefore)) / 1024.0 / 1024.0
     
     print("Operation \(name) took \(secondsElapsed) seconds and used \(memoryConsumed) MB of memory")
 }
