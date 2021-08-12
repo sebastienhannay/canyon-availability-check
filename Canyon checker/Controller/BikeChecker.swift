@@ -24,7 +24,7 @@ class BikeChecker {
     
     static let shared = BikeChecker()
     
-    var registeredBikes = [Bike]() {
+    private(set) var registeredBikes = [Bike]() {
         didSet {
             serialize()
             NotificationCenter.default.post(name: .bikeRefresh, object: nil)
@@ -39,6 +39,18 @@ class BikeChecker {
         try? JSONEncoder().encode(registeredBikes).write(to: bikeFileURL, options: .atomic)
     }
     
+    func append(_ bike: Bike) {
+        if let existingBike = registeredBikes.first(where: { $0.name == bike.name && $0.selectedColor == bike.selectedColor }) {
+            existingBike.sizesToCheck = Array(Set(existingBike.sizesToCheck).union(Set(bike.sizesToCheck)))
+        } else {
+            registeredBikes.append(bike)
+        }
+    }
+    
+    func remove(at index : Int) {
+        registeredBikes.remove(at: index)
+    }
+    
     func bike(from url: URL, completion : @escaping(CanyonBike?) -> Void) {
         
         // build URL
@@ -46,24 +58,23 @@ class BikeChecker {
         var queryItems = urlComponents?.queryItems
         queryItems?.append(URLQueryItem(name: "pid", value: urlComponents?.fileName))
         urlComponents?.queryItems = queryItems
-        let queryParams = urlComponents?.percentEncodedQuery ?? ""
+        let queryParams = urlComponents?.percentEncodedQuery ?? "pid=\(urlComponents?.fileName ?? "")"
         let locale = Locale(identifier: urlComponents?.pathComponents?.first ?? "de-de")
-        let apiURL = URL(string: "https://www.canyon.com/on/demandware.store/Sites-RoW-Site/\(locale.languageCode ?? "en")_\(locale.regionCode ?? "US")/Product-Variation?\(queryParams)")!
+        let apiURL = URL(string: "https://www.canyon.com/on/demandware.store/Sites-RoW-Site/\(locale.languageCode ?? "en")_\(locale.regionCode ?? "US")/Product-Variation?\(queryParams)&quantity=1&imageupdate=color")!
         let datatask = URLSession.shared.canyonBikeTask(with: apiURL) { (canyonBike, _, _) in
             completion(canyonBike)
         }
         datatask.resume()
     }
     
-    func checkStatus(for bike: Bike, completion : @escaping([BikeAvailability]) -> Void){
+    func checkStatus(for bike: Bike, completion : @escaping(CanyonBike?) -> Void){
         if let url = bike.canyonBikeUrl {
             let datatask = URLSession.shared.canyonBikeTask(with: url) { (canyonBike, _, _) in
-                bike.canyonBike = canyonBike ?? bike.canyonBike
-                completion(bike.availabilities)
+                completion(canyonBike)
             }
             datatask.resume()
         } else {
-            completion(bike.availabilities)
+            completion(nil)
         }
     }
     
@@ -71,20 +82,33 @@ class BikeChecker {
         var iterator = self.registeredBikes.makeIterator()
         var bike : Bike? = iterator.next()
         if bike != nil {
-            var checkNext : ([BikeAvailability]) -> Void = { _ in }
-            checkNext = { bikeAvailabilities in
+            var checkNext : (CanyonBike?) -> Void = { _ in }
+            checkNext = { canyonBike in
                 print("Checking for bike \(bike!.name ?? "bike") \(bike!.colorName ?? "no color")")
-                let availableSizes = bikeAvailabilities.filter( { $0.available == true } ).compactMap { $0.size }
-                if availableSizes.count > 0 {
+                let newAvailabilities = canyonBike?.availabities(for: bike?.sizesToCheck ?? [String]()) ?? [BikeAvailability]()
+                let oldAvailabilities = bike?.availabilities ?? [BikeAvailability]()
+                if (newAvailabilities != oldAvailabilities) {
+                    var availableSize = newAvailabilities.filter( { $0.available} ).compactMap( { $0.size })
                     let content = UNMutableNotificationContent()
-                    content.title = "New bike available"
-                    content.body = "\(bike!.name!) \(bike!.colorName ?? "") is available in \(availableSizes.joined(separator: " and "))"
+                    content.title = "\(bike!.name!) \(bike!.colorName!) availability changed"
+                    if (availableSize.count > 0) {
+                        let last = availableSize.popLast()!
+                        if (availableSize.count > 0) {
+                            content.body = "Now available in \(availableSize.joined(separator: ", ")) and \(last)"
+                        } else {
+                            content.body = "Now available in \(last)"
+                        }
+                    } else {
+                        content.body = "Not available anymore"
+                    }
                     content.sound = UNNotificationSound.default
-                    content.badge = NSNumber(value: 1)
+                    content.badge = NSNumber(value: self.availableBikeCount)
 
-                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                    let timeTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: timeTrigger)
                     UNUserNotificationCenter.current().add(request)
                 }
+                bike?.canyonBike = canyonBike
                 bike = iterator.next()
                 if bike != nil {
                     self.checkStatus(for: bike!, completion: checkNext)
@@ -96,9 +120,15 @@ class BikeChecker {
         }
     }
     
+    var availableBikeCount : Int {
+        get {
+            self.registeredBikes.filter( { $0.availabilities.contains(where: { $0.available == true }) } ).count
+        }
+    }
+    
     static func registerBackgroundTask() {
         let bikeCheckerTask = BGAppRefreshTaskRequest(identifier: "canyonChecker.checkAll")
-        bikeCheckerTask.earliestBeginDate = Date(timeIntervalSinceNow: 60*15)
+        bikeCheckerTask.earliestBeginDate = Date(timeIntervalSinceNow: 60*30)
         do {
           try BGTaskScheduler.shared.submit(bikeCheckerTask)
         } catch {

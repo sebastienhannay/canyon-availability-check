@@ -16,6 +16,7 @@
 //   task.resume()
 
 import Foundation
+import UIKit
 
 // MARK: - CanyonBike
 class CanyonBike: Codable {
@@ -41,8 +42,8 @@ class CanyonBike: Codable {
                     .replacingOccurrences(of: "_/full", with: "detail")
                 if let url = URL(string: detailUrl), var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
                     urlComponents.queryItems = [
-                        URLQueryItem(name: "sw", value: "100"),
-                        URLQueryItem(name: "sh", value: "100"),
+                        URLQueryItem(name: "sw", value: String(100 * UIScreen.main.scale)),
+                        URLQueryItem(name: "sh", value: String(100 * UIScreen.main.scale)),
                         URLQueryItem(name: "sm", value: "cut"),
                         URLQueryItem(name: "sfrm", value: "png")
                     ]
@@ -91,6 +92,10 @@ class CanyonBike: Codable {
         get {
             productData.variationAttributes.first(where: { $0.id == "pv_rahmengroesse" })?.values.compactMap( { $0.displayValue })
         }
+    }
+    
+    func availabities(for sizes : [String]) -> [BikeAvailability] {
+        return self.sizes?.compactMap( { BikeAvailability(size: $0.displayValue, available: $0.availability?.available ?? false) } ).filter( { sizes.contains($0.size) } ) ?? [BikeAvailability]()
     }
     
 }
@@ -150,7 +155,7 @@ struct Value: Codable {
 // MARK: - Availability
 struct Availability: Codable {
     let messages: [String]
-    let inStockDate: String
+    let inStockDate: String?
     let available: Bool
 }
 

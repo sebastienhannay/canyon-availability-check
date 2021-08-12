@@ -81,7 +81,9 @@ class BikeAdder: UIViewController {
             bike.sizesToCheck = canyonBike.sizeIds!.filter( { sizesToCheck.contains($0) })
             bike.selectedColor = canyonBike.selectedColorInfo?.id
             bike.canyonBike = canyonBike
-            BikeChecker.shared.registeredBikes.append(bike)
+            
+            
+            BikeChecker.shared.append(bike)
             self.dismiss(animated: true)
         }
     }

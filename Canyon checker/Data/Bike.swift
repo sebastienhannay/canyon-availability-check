@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct BikeAvailability : Codable {
+struct BikeAvailability : Codable, Equatable {
     var size : String
     var available : Bool
     
@@ -20,12 +20,20 @@ struct BikeAvailability : Codable {
 class Bike: Codable {
     
     var image : UIImage?
-    var sizesToCheck = [String]()
+    var sizesToCheck = [String]() {
+        didSet {
+            if BikeChecker.shared.registeredBikes.contains(where: { $0.url == self.url }) {
+                BikeChecker.shared.serialize()
+                NotificationCenter.default.post(name: .bikeRefresh, object: nil)
+            }
+        }
+    }
     var selectedColor : String?
     var canyonBike : CanyonBike? {
         didSet {
             if BikeChecker.shared.registeredBikes.contains(where: { $0.url == self.url }) {
                 BikeChecker.shared.serialize()
+                NotificationCenter.default.post(name: .bikeRefresh, object: nil)
             }
         }
     }
@@ -52,7 +60,7 @@ class Bike: Codable {
                 urlComponents?.queryItems = queryItems
                 let queryParams = urlComponents?.percentEncodedQuery ?? ""
                 let locale = Locale(identifier: urlComponents?.pathComponents?.first ?? "de-de")
-                return URL(string: "https://www.canyon.com/on/demandware.store/Sites-RoW-Site/\(locale.languageCode ?? "en")_\(locale.regionCode ?? "US")/Product-Variation?\(queryParams)")!
+                return URL(string: "https://www.canyon.com/on/demandware.store/Sites-RoW-Site/\(locale.languageCode ?? "en")_\(locale.regionCode ?? "US")/Product-Variation?\(queryParams)&quantity=1&imageupdate=color")!
             }
             return nil
         }

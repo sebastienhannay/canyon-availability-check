@@ -10,6 +10,7 @@ import UIKit
 class StatusView: UIView {
     
     @IBOutlet weak var sizeLabel: UILabel?
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
     override func draw(_ rect: CGRect) {
         self.sizeLabel?.layer.cornerRadius = (self.sizeLabel?.bounds.height ?? 8) * 0.5

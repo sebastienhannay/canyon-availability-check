@@ -13,21 +13,45 @@ class CanyonCheckerTableViewController: UITableViewController {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         NotificationCenter.default.addObserver(forName: .bikeRefresh, object: nil, queue: nil) { notification in
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        refreshJob()
+    }
+    
+    private func refreshJob() {
+        refresh()
+        DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + 120) {
+            self.refreshJob()
         }
     }
+    
+    @objc private func refresh() {
+        for bike in BikeChecker.shared.registeredBikes.enumerated() {
+            let indexPath = IndexPath(row: bike.offset, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as? BikeCell
+            cell?.loading = true
+            BikeChecker.shared.checkStatus(for: bike.element) { canyonBike in
+                bike.element.canyonBike = canyonBike
+                DispatchQueue.main.async {
+                    cell?.loading = false
+                    cell?.bike = bike.element
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+            }
+        }
+        self.tableView.refreshControl?.endRefreshing()
+    }
+    
+    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-    
-    @objc func reloadData() {
-        self.tableView.reloadData()
-        self.tableView.refreshControl?.endRefreshing()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,7 +65,7 @@ class CanyonCheckerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Action to remove cell on bike list"), handler: {(action, view, completionHandler) in
             // Update data source when user taps action
-            BikeChecker.shared.registeredBikes.remove(at: indexPath.row)
+            BikeChecker.shared.remove(at: indexPath.row)
             completionHandler(true)
           })
 
@@ -53,17 +77,7 @@ class CanyonCheckerTableViewController: UITableViewController {
         let bike = BikeChecker.shared.registeredBikes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "BikeCell", for: indexPath) as! BikeCell
         cell.bike = bike
-        
-        if let _ = bike.url {
-            cell.loading = true
-            BikeChecker.shared.checkStatus(for: bike) { availability in
-                DispatchQueue.main.async {
-                    cell.loading = false
-                    cell.bike = bike
-                }
-            }
-        }
-
+        cell.loading = false
         return cell
     }
     
